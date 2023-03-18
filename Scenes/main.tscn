@@ -12,9 +12,13 @@ centered = false
 
 [node name="Bird" parent="." instance=ExtResource("1_aw3c8")]
 position = Vector2(72, 45)
+linear_damp_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="Bird"]
 limit_top = 0
 limit_bottom = 256
 
 [node name="Ground" parent="." instance=ExtResource("3_6wt25")]
+
+[node name="Ground2" parent="." instance=ExtResource("3_6wt25")]
+position = Vector2(168, 0)
