@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3ww8yjssah82"]
+[gd_scene load_steps=5 format=3 uid="uid://4roxp40nnnji"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="Texture2D" uid="uid://hx1h2u8j1vhm" path="res://Sprites/background_day.png" id="1_ddfr6"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_min51"]
 [ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_min51")
 
 [node name="BackgroundDay" type="Sprite2D" parent="."]
 texture = ExtResource("1_ddfr6")
@@ -13,6 +15,7 @@ centered = false
 [node name="Bird" parent="." instance=ExtResource("1_aw3c8")]
 position = Vector2(72, 45)
 linear_damp_mode = 1
+start_velocity = 7
 
 [node name="Camera2D" type="Camera2D" parent="Bird"]
 limit_top = 0
