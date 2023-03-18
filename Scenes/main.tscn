@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="Texture2D" uid="uid://hx1h2u8j1vhm" path="res://Sprites/background_day.png" id="1_ddfr6"]
-[ext_resource type="PackedScene" uid="uid://c4fm5oh367m3q" path="res://Scenes/ground.tscn" id="3_6wt25"]
+[ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
 
 [node name="Main" type="Node2D"]
 
@@ -18,7 +18,4 @@ linear_damp_mode = 1
 limit_top = 0
 limit_bottom = 256
 
-[node name="Ground" parent="." instance=ExtResource("3_6wt25")]
-
-[node name="Ground2" parent="." instance=ExtResource("3_6wt25")]
-position = Vector2(168, 0)
+[node name="SpawnerGround" parent="." instance=ExtResource("3_dd6ec")]
