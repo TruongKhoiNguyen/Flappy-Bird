@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj06ohkfankut"]
+
+[ext_resource type="Texture2D" uid="uid://hx1h2u8j1vhm" path="res://Sprites/background_day.png" id="1_cxm6p"]
+
+[node name="Background" type="CanvasLayer"]
+
+[node name="BackgroundDay" type="Sprite2D" parent="."]
+texture = ExtResource("1_cxm6p")
+centered = false
