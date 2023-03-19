@@ -23,13 +23,3 @@ func _input(event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-#	if linear_velocity.y > 0:
-#		angular_velocity = fall_rotation
-#
-#	# Limit flying angle
-#	if rotation > max_angle:
-#		angular_velocity = 0
-#		rotation = max_angle
-#	elif rotation < min_angle:
-#		angular_velocity = 0 
-#		rotation = min_angle
