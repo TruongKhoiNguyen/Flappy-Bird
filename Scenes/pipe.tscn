@@ -9,20 +9,20 @@ size = Vector2(26, 160)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57mjt"]
 size = Vector2(26, 160)
 
-[node name="Pipe" type="StaticBody2D"]
+[node name="pipe" type="StaticBody2D"]
 
-[node name="SpriteTop" type="Sprite2D" parent="."]
+[node name="sprite_top" type="Sprite2D" parent="."]
 position = Vector2(0, -101)
 texture = ExtResource("1_7abda")
 
-[node name="SpriteBottom" type="Sprite2D" parent="."]
+[node name="sprite_bottom" type="Sprite2D" parent="."]
 position = Vector2(0, 101)
 texture = ExtResource("2_gaphd")
 
-[node name="CollisionTop" type="CollisionShape2D" parent="."]
+[node name="collision_top" type="CollisionShape2D" parent="."]
 position = Vector2(0, -101)
 shape = SubResource("RectangleShape2D_2lejb")
 
-[node name="CollisionBottom" type="CollisionShape2D" parent="."]
+[node name="collision_bottom" type="CollisionShape2D" parent="."]
 position = Vector2(0, 101)
 shape = SubResource("RectangleShape2D_57mjt")

@@ -1,23 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://4roxp40nnnji"]
+[gd_scene load_steps=4 format=3 uid="uid://4roxp40nnnji"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_min51"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
 [ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_min51")
+[node name="main" type="Node2D"]
 
-[node name="Background" parent="." instance=ExtResource("2_vped0")]
+[node name="background" parent="." instance=ExtResource("2_vped0")]
 layer = -1
 
-[node name="Bird" parent="." instance=ExtResource("1_aw3c8")]
+[node name="bird" parent="." instance=ExtResource("1_aw3c8")]
 position = Vector2(72, 45)
 linear_damp_mode = 1
 start_velocity = 10
 
-[node name="Camera2D" type="Camera2D" parent="Bird"]
+[node name="camera" type="Camera2D" parent="bird"]
 limit_top = 0
 limit_bottom = 256
 
-[node name="SpawnerGround" parent="." instance=ExtResource("3_dd6ec")]
+[node name="spawner_ground" parent="." instance=ExtResource("3_dd6ec")]
