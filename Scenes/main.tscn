@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://4roxp40nnnji"]
+[gd_scene load_steps=5 format=3 uid="uid://4roxp40nnnji"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
 [ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
+[ext_resource type="PackedScene" uid="uid://dfwn1tq4iric7" path="res://Scenes/spawner_pipe.tscn" id="4_tjjsj"]
 
 [node name="main" type="Node2D"]
 
@@ -17,5 +18,7 @@ start_velocity = 10
 [node name="camera" type="Camera2D" parent="bird"]
 limit_top = 0
 limit_bottom = 256
+
+[node name="spawner_pipe" parent="." instance=ExtResource("4_tjjsj")]
 
 [node name="spawner_ground" parent="." instance=ExtResource("3_dd6ec")]
