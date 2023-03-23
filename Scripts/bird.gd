@@ -1,25 +1,22 @@
 extends RigidBody2D
 
-@export var flap_velocity = 300
+@export var flap_force = 150
+@export var start_velocity = 50
 
-#@export var max_angle = deg_to_rad(90)
-#@export var min_angle = -deg_to_rad(30)
-#
-#@export var fall_rotation = 1
-#@export var flap_rotation = -1
-
-@export var start_velocity = 5
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	linear_velocity.x = start_velocity
+	linear_velocity = Vector2(start_velocity, linear_velocity.y)
 
-func _input(event):
-	if event.is_action_pressed("Flap"):
-		linear_velocity.y = -flap_velocity
-#		if rotation > min_angle:
-#			angular_velocity = flap_rotation
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _integrate_forces(state):	
+	if Input.is_action_pressed("Flap"):
+		state.linear_velocity = Vector2(linear_velocity.x, -flap_force)
+		state.angular_velocity = -3
+		
+	# Limit rotation of the bird
+	if rotation_degrees < -30 or rotation_degrees > 90:
+		var new_rotation = clamp(rotation, deg_to_rad(-30), deg_to_rad(90))
+		var new_transform = Transform2D(new_rotation, position)
+		state.transform = new_transform
+		state.angular_velocity = 0
+	
+	if linear_velocity.y > 0:
+		state.angular_velocity = 1.5
