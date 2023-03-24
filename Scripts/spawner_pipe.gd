@@ -29,6 +29,7 @@ func spawn_and_move():
 func spawn():
 	var new_pipe = scn_pipe.instantiate()
 	new_pipe.position = position
+	new_pipe.connect("tree_exited", spawn_and_move)
 	$container.add_child(new_pipe)
 	
 func move_to_next_pos():
@@ -36,6 +37,3 @@ func move_to_next_pos():
 	next_pos.x += PIPE_WIDTH / 2 + OFFSET_X + PIPE_WIDTH / 2
 	next_pos.y = randi_range(0 + OFFSET_Y, get_viewport_rect().size.y - GROUND_HEIGHT - OFFSET_Y)
 	position = next_pos
-
-func _process(delta):
-	pass

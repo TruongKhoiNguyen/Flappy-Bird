@@ -6,5 +6,5 @@ const SCREEN_WIDTH = 144
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if $bottom_right.global_position.x <= camera.global_position.x - SCREEN_WIDTH / 2:
+	if $right.global_position.x <= camera.global_position.x - SCREEN_WIDTH / 2:
 		queue_free()
