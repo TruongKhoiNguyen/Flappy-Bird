@@ -1,25 +1,38 @@
 extends RigidBody2D
 
-@export var flap_velocity = 300
+const FlappingState = preload("res://Scripts/States/state_flapping.gd")
+const FlyingState   = preload("res://Scripts/States/state_flying.gd")
+const HitState      = preload("res://Scripts/States/state_hit.gd")
+const GroundedState = preload("res://Scripts/States/state_grounded.gd")
 
-#@export var max_angle = deg_to_rad(90)
-#@export var min_angle = -deg_to_rad(30)
-#
-#@export var fall_rotation = 1
-#@export var flap_rotation = -1
+enum STATE {FLYING, FLAPPING, HIT, GROUNDED}
 
-@export var start_velocity = 5
 
-# Called when the node enters the scene tree for the first time.
+@export var flap_force = 150
+@export var start_velocity = 50
+
+var bird_state
+
+
 func _ready():
-	linear_velocity.x = start_velocity
+	set_bird_state(STATE.FLAPPING)
 
-func _input(event):
-	if event.is_action_pressed("Flap"):
-		linear_velocity.y = -flap_velocity
-#		if rotation > min_angle:
-#			angular_velocity = flap_rotation
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _integrate_forces(state):	
+	bird_state.integrate_forces(state)
+	
+	
+func set_bird_state(state):
+	if bird_state != null:
+		bird_state.exit()
+	
+	match state:
+		STATE.FLYING:
+			bird_state = FlyingState.new(self)
+		STATE.FLAPPING:
+			bird_state = FlappingState.new(self)
+		STATE.HIT:
+			bird_state = HitState.new(self)
+		STATE.GROUNDED:
+			bird_state = GroundedState.new(self)
+	

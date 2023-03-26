@@ -11,10 +11,10 @@ func _ready():
 		spawn_and_move()
 
 func spawn_and_move():
-	spawn_ground()
+	spawn()
 	move_to_next_pos()
 
-func spawn_ground():
+func spawn():
 	var new_ground = scn_ground.instantiate()
 	new_ground.position = position
 	new_ground.connect("tree_exited", spawn_and_move)
