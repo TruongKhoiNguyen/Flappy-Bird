@@ -10,6 +10,9 @@ const OFFSET_X = 55
 const PREFILL = 3 
 
 func _ready():
+	pass
+		
+func start():
 	go_to_init_pos()
 	
 	for i in range(PREFILL):

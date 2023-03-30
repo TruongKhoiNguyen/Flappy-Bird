@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4roxp40nnnji"]
+[gd_scene load_steps=7 format=3 uid="uid://4roxp40nnnji"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
 [ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
 [ext_resource type="PackedScene" uid="uid://dfwn1tq4iric7" path="res://Scenes/spawner_pipe.tscn" id="4_tjjsj"]
+[ext_resource type="Script" path="res://Scripts/btn_instructions.gd" id="5_7bk10"]
+[ext_resource type="Texture2D" uid="uid://blgq67kxbqkwl" path="res://Sprites/instructions.png" id="5_tiipy"]
 
 [node name="main" type="Node2D"]
 
@@ -11,7 +13,7 @@
 layer = -1
 
 [node name="bird" parent="." instance=ExtResource("1_aw3c8")]
-position = Vector2(36, 64)
+position = Vector2(36, 120)
 linear_damp_mode = 1
 
 [node name="camera" type="Camera2D" parent="bird"]
@@ -22,3 +24,19 @@ limit_bottom = 256
 [node name="spawner_pipe" parent="." instance=ExtResource("4_tjjsj")]
 
 [node name="spawner_ground" parent="." instance=ExtResource("3_dd6ec")]
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="btn_instructions" type="TextureButton" parent="hud"]
+offset_right = 144.0
+offset_bottom = 256.0
+action_mode = 0
+script = ExtResource("5_7bk10")
+
+[node name="texture" type="TextureRect" parent="hud/btn_instructions"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 104.0
+offset_right = 101.0
+offset_bottom = 153.0
+texture = ExtResource("5_tiipy")
