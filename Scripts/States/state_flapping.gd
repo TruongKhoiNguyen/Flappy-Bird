@@ -21,3 +21,4 @@ func integrate_forces(state):
 		
 	if bird.linear_velocity.y > 0:
 		state.angular_velocity = 1.5
+	

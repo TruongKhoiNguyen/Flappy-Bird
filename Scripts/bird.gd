@@ -15,7 +15,7 @@ var bird_state
 
 
 func _ready():
-	set_bird_state(STATE.FLAPPING)
+	set_bird_state(STATE.FLYING)
 
 
 func _integrate_forces(state):	
