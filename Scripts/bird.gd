@@ -18,6 +18,13 @@ signal state_changed
 
 func _ready():
 	set_bird_state(STATE.FLYING)
+	connect("body_entered", _on_body_entered)
+	
+
+func _on_body_entered(other_body):
+	if bird_state.has_method("on_body_entered"):
+		bird_state.on_body_entered(other_body)
+	pass
 
 
 func _integrate_forces(state):	

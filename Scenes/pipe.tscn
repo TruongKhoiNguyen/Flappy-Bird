@@ -10,7 +10,7 @@ size = Vector2(26, 160)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57mjt"]
 size = Vector2(26, 160)
 
-[node name="pipe" type="StaticBody2D"]
+[node name="pipe" type="StaticBody2D" groups=["pipes"]]
 script = ExtResource("1_yee2i")
 
 [node name="sprite_top" type="Sprite2D" parent="."]
