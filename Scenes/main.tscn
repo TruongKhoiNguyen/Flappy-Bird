@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://4roxp40nnnji"]
+[gd_scene load_steps=9 format=3 uid="uid://4roxp40nnnji"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dfwn1tq4iric7" path="res://Scenes/spawner_pipe.tscn" id="4_tjjsj"]
 [ext_resource type="Script" path="res://Scripts/btn_instructions.gd" id="5_7bk10"]
 [ext_resource type="Texture2D" uid="uid://blgq67kxbqkwl" path="res://Sprites/instructions.png" id="5_tiipy"]
+[ext_resource type="FontFile" uid="uid://cdghnl0roeap1" path="res://Fonts/font_score.ttf" id="7_dm6m1"]
+[ext_resource type="Script" path="res://Scripts/score.gd" id="8_br1an"]
 
 [node name="main" type="Node2D"]
 
@@ -43,3 +45,15 @@ offset_top = 104.0
 offset_right = 101.0
 offset_bottom = 153.0
 texture = ExtResource("5_tiipy")
+
+[node name="score" type="Label" parent="hud"]
+offset_top = 10.0
+offset_right = 144.0
+offset_bottom = 33.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_dm6m1")
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_br1an")
