@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bncwutv8bs123"]
+
+[ext_resource type="Script" path="res://Scripts/score_upper.gd" id="1_g0tj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as68a"]
+size = Vector2(2, 40)
+
+[node name="score_upper" type="Area2D"]
+script = ExtResource("1_g0tj7")
+
+[node name="collision_shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_as68a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
