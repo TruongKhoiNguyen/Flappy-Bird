@@ -21,3 +21,13 @@ func integrate_forces(state):
 		
 	if bird.linear_velocity.y > 0:
 		state.angular_velocity = 1.5
+	
+func exit():
+	pass
+
+func on_body_entered(other_body):
+	if other_body.is_in_group("pipes"):
+		bird.set_bird_state(bird.STATE.HIT)
+	elif other_body.is_in_group("grounds"):
+		bird.set_bird_state(bird.STATE.GROUNDED)
+	pass

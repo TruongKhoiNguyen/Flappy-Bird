@@ -10,6 +10,17 @@ const OFFSET_X = 55
 const PREFILL = 3 
 
 func _ready():
+	var bird = get_tree().get_root().get_node("main/bird")
+	if bird:
+		bird.connect("state_changed", _on_bird_state_changed.bind(bird), CONNECT_ONE_SHOT)
+	pass
+	
+func _on_bird_state_changed(bird):
+	if bird.get_bird_state() == bird.STATE.FLAPPING:
+		start()
+	pass
+		
+func start():
 	go_to_init_pos()
 	
 	for i in range(PREFILL):
@@ -20,6 +31,11 @@ func go_to_init_pos():
 	var init_pos = Vector2()
 	init_pos.x = get_viewport_rect().size.x + PIPE_WIDTH / 2
 	init_pos.y = randi_range(0 + OFFSET_Y, get_viewport_rect().size.y - GROUND_HEIGHT - OFFSET_Y)
+	
+	var camera = get_tree().get_root().get_node("main/bird/camera")
+	if camera:
+		init_pos.x += camera.global_position.x
+		
 	position = init_pos
 
 func spawn_and_move():

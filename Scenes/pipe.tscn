@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://crte48d1htla8"]
+[gd_scene load_steps=7 format=3 uid="uid://crte48d1htla8"]
 
 [ext_resource type="Texture2D" uid="uid://n1p2585hl1m7" path="res://Sprites/pipe_green_top.png" id="1_7abda"]
 [ext_resource type="Script" path="res://Scripts/pipe.gd" id="1_yee2i"]
 [ext_resource type="Texture2D" uid="uid://b41i74wjug6w6" path="res://Sprites/pipe_green_bottom.png" id="2_gaphd"]
+[ext_resource type="PackedScene" uid="uid://bncwutv8bs123" path="res://Scenes/score_upper.tscn" id="4_kg3lc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2lejb"]
 size = Vector2(26, 160)
@@ -10,7 +11,7 @@ size = Vector2(26, 160)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57mjt"]
 size = Vector2(26, 160)
 
-[node name="pipe" type="StaticBody2D"]
+[node name="pipe" type="StaticBody2D" groups=["pipes"]]
 script = ExtResource("1_yee2i")
 
 [node name="sprite_top" type="Sprite2D" parent="."]
@@ -31,3 +32,5 @@ shape = SubResource("RectangleShape2D_57mjt")
 
 [node name="right" type="Marker2D" parent="."]
 position = Vector2(13, 0)
+
+[node name="score_upper" parent="." instance=ExtResource("4_kg3lc")]
