@@ -9,16 +9,7 @@ const OFFSET_X = 55
 
 const PREFILL = 3 
 
-func _ready():
-	var bird = get_tree().get_root().get_node("main/bird")
-	if bird:
-		bird.connect("state_changed", _on_bird_state_changed.bind(bird), CONNECT_ONE_SHOT)
-	pass
-	
-func _on_bird_state_changed(bird):
-	if bird.get_bird_state() == bird.STATE.FLAPPING:
-		start()
-	pass
+
 		
 func start():
 	go_to_init_pos()
@@ -53,3 +44,8 @@ func move_to_next_pos():
 	next_pos.x += PIPE_WIDTH / 2 + OFFSET_X + PIPE_WIDTH / 2
 	next_pos.y = randi_range(0 + OFFSET_Y, get_viewport_rect().size.y - GROUND_HEIGHT - OFFSET_Y)
 	position = next_pos
+
+
+func _on_bird_state_changed(bird):
+	start()
+	pass
