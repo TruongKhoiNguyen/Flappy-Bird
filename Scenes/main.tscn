@@ -113,5 +113,5 @@ limit_bottom = 256
 
 [connection signal="pressed" from="hud/btn_instructions" to="hud/btn_instructions" method="_on_pressed"]
 [connection signal="pressed" from="hud/gameover/hbox_buttons/btn_play" to="hud/gameover/hbox_buttons/btn_play" method="_on_pressed"]
-[connection signal="state_changed" from="bird" to="spawner_pipe" method="_on_bird_state_changed" flags=6]
 [connection signal="state_changed" from="bird" to="hud/gameover" method="_on_bird_state_changed"]
+[connection signal="state_changed" from="bird" to="spawner_pipe" method="_on_bird_state_changed" flags=6]
