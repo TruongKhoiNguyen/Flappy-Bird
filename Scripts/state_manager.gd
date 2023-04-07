@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-const STAGE_MAIN := "res://Scenes/main.tscn"
-
 signal stage_changed
+
+const STAGE_MAIN := "res://Scenes/main.tscn"
 
 var is_stage_changing := false
 

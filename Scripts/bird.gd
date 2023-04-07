@@ -1,20 +1,20 @@
-extends RigidBody2D
 class_name Bird
+extends RigidBody2D
+
+
+signal state_changed(bird: Bird)
+enum STATE {FLYING, FLAPPING, HIT, GROUNDED}
 
 const FlappingState = preload("res://Scripts/States/state_flapping.gd")
 const FlyingState   = preload("res://Scripts/States/state_flying.gd")
 const HitState      = preload("res://Scripts/States/state_hit.gd")
 const GroundedState = preload("res://Scripts/States/state_grounded.gd")
 
-enum STATE {FLYING, FLAPPING, HIT, GROUNDED}
 
-
-@export var flap_force = 150
-@export var start_velocity = 50
+@export var flap_force := 150
+@export var start_velocity := 50
 
 @onready var bird_state = FlyingState.new(self)
-
-signal state_changed(bird: Bird)
 
 
 func _ready():
@@ -54,8 +54,5 @@ func get_bird_state() -> STATE:
 		return STATE.FLAPPING
 	elif bird_state is HitState:
 		return STATE.HIT
-	elif bird_state is GroundedState:
-		return STATE.GROUNDED
 		
 	return STATE.GROUNDED
-	pass
