@@ -9,7 +9,7 @@ const OFFSET_X = 55
 
 const PREFILL = 3 
 
-
+@onready var viewport_height := get_viewport_rect().size.y
 		
 func start():
 	go_to_init_pos()
@@ -21,7 +21,7 @@ func go_to_init_pos():
 	randomize()
 	var init_pos = Vector2()
 	init_pos.x = get_viewport_rect().size.x + PIPE_WIDTH / 2
-	init_pos.y = randi_range(0 + OFFSET_Y, get_viewport_rect().size.y - GROUND_HEIGHT - OFFSET_Y)
+	init_pos.y = int(randi_range(0 + OFFSET_Y, viewport_height - GROUND_HEIGHT - OFFSET_Y))
 	
 	var camera = get_tree().get_root().get_node("main/bird/camera")
 	if camera:
@@ -37,15 +37,15 @@ func spawn():
 	var new_pipe = scn_pipe.instantiate()
 	new_pipe.position = position
 	new_pipe.connect("tree_exited", spawn_and_move)
-	$container.add_child(new_pipe)
+	$container.add_child.call_deferred(new_pipe)
 	
 func move_to_next_pos():
-	var next_pos = position
+	var next_pos := position
 	next_pos.x += PIPE_WIDTH / 2 + OFFSET_X + PIPE_WIDTH / 2
-	next_pos.y = randi_range(0 + OFFSET_Y, get_viewport_rect().size.y - GROUND_HEIGHT - OFFSET_Y)
+	next_pos.y = int(randi_range(0 + OFFSET_Y, viewport_height - GROUND_HEIGHT - OFFSET_Y))
 	position = next_pos
 
 
-func _on_bird_state_changed(bird):
+func _on_bird_state_changed(_bird):
 	start()
 	pass

@@ -5,7 +5,7 @@ func _ready():
 	grab_focus()
 
 func on_pressed():
-	var bird = get_tree().get_root().get_node("main/bird")
+	var bird: Bird = get_tree().get_root().get_node("main/bird")
 	if bird:
 		bird.set_bird_state(bird.STATE.FLAPPING)
 		
@@ -13,7 +13,7 @@ func on_pressed():
 
 
 func _on_pressed():
-	var bird = get_tree().get_root().get_node("main/bird")
+	var bird: Bird = get_tree().get_root().get_node("main/bird")
 	if bird:
 		bird.set_bird_state(bird.STATE.FLAPPING)
 		
