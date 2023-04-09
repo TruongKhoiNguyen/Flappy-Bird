@@ -1,13 +1,13 @@
-extends Node
+extends State
 
-var bird
+var bird: Bird
 
-func _init(bird):
-	self.bird = bird
+func _init(p_bird: Bird):
+	bird = p_bird
 	
 	bird.linear_velocity = Vector2(0, 0)
 	bird.angular_velocity = 0
 	pass
 	
-func integrate_forces(state):
+func integrate_forces(_state):
 	pass

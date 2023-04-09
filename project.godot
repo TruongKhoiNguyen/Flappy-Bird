@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://Scripts/game.gd"
+StateManager="*res://Scenes/state_manager.tscn"
 
 [display]
 
@@ -25,8 +26,8 @@ window/size/viewport_width=144
 window/size/viewport_height=256
 window/size/window_width_override=432
 window/size/window_height_override=768
-window/handheld/orientation=1
 window/stretch/mode="viewport"
+window/handheld/orientation=1
 
 [importer_defaults]
 
@@ -61,5 +62,5 @@ Flap={
 
 [rendering]
 
-renderer/rendering_method="mobile"
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"

@@ -1,9 +1,9 @@
-extends Node
+extends State
 
 var bird
 	
-func _init(bird):
-	self.bird = bird
+func _init(p_bird):
+	bird = p_bird
 	bird.linear_velocity = Vector2(bird.start_velocity, bird.linear_velocity.y)
 		
 func integrate_forces(state):

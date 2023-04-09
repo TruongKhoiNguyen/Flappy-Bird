@@ -11,3 +11,8 @@ func _ready():
 func _on_score_current_changed():
 	text = str(Game.score_current)
 	pass
+
+
+func _on_bird_state_changed(bird: Bird):
+	if bird.get_bird_state() == bird.STATE.GROUNDED:
+		hide()

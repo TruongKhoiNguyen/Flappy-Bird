@@ -3,7 +3,7 @@ extends Node2D
 const scn_ground = preload("res://Scenes/ground.tscn")
 const GROUND_WIDTH = 168
 
-@export var PREFILL = 2
+@export var PREFILL = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +18,7 @@ func spawn():
 	var new_ground = scn_ground.instantiate()
 	new_ground.position = position
 	new_ground.connect("tree_exited", spawn_and_move)
-	$container.add_child(new_ground)
+	$container.add_child.call_deferred(new_ground)
 	
 func move_to_next_pos():
 	position.x += GROUND_WIDTH
