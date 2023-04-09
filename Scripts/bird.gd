@@ -14,7 +14,7 @@ const GroundedState = preload("res://Scripts/States/state_grounded.gd")
 @export var flap_force := 150
 @export var start_velocity := 50
 
-@onready var bird_state = FlyingState.new(self)
+@onready var bird_state:State = FlyingState.new(self)
 
 
 func _ready():

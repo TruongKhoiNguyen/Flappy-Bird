@@ -1,4 +1,4 @@
-extends Node
+extends State
 
 var bird: Bird
 var prev_gravity_scale: float
