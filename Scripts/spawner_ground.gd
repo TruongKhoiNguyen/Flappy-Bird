@@ -3,7 +3,7 @@ extends Node2D
 const scn_ground = preload("res://Scenes/ground.tscn")
 const GROUND_WIDTH = 168
 
-@export var PREFILL = 2
+@export var PREFILL = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

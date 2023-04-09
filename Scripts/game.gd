@@ -13,7 +13,8 @@ var score_current := 0:
 		
 var score_best := 0:
 	set(value):
-		score_best = value
+		if value > score_best:
+			score_best = value
 		emit_signal("score_best_changed")
 		
 
