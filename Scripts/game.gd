@@ -15,7 +15,7 @@ var score_best := 0:
 	set(value):
 		if value > score_best:
 			score_best = value
-		emit_signal("score_best_changed")
+			emit_signal("score_best_changed")
 		
 
 func _ready():
