@@ -4,6 +4,13 @@ extends Node
 signal score_current_changed
 signal score_best_changed
 
+enum Medal {
+	BRONZE = 1,
+	SILVER = 2,
+	GOLD = 3,
+	PLATINUM = 4,
+}
+
 
 var score_current := 0:
 	set(value):
