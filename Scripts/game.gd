@@ -12,6 +12,9 @@ enum Medal {
 }
 
 
+const SCREEN_WIDTH := 144
+
+
 var score_current := 0:
 	set(value):
 		score_current = value

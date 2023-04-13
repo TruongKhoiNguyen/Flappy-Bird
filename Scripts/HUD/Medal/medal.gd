@@ -1,6 +1,9 @@
+class_name Medal
 extends TextureRect
 
 signal shown
+
+const MEDAL_RADIUS := 11
 
 const MEDAL_BRONZE :Texture2D = preload("res://Sprites/medal_bronze.png")
 const MEDAL_SILVER :Texture2D = preload("res://Sprites/medal_silver.png")

@@ -5,11 +5,6 @@ extends RigidBody2D
 signal state_changed(bird: Bird)
 enum STATE {FLYING, FLAPPING, HIT, GROUNDED}
 
-const FlappingState = preload("res://Scripts/States/state_flapping.gd")
-const FlyingState   = preload("res://Scripts/States/state_flying.gd")
-const HitState      = preload("res://Scripts/States/state_hit.gd")
-const GroundedState = preload("res://Scripts/States/state_grounded.gd")
-
 
 @export var flap_force := 150
 @export var start_velocity := 50
