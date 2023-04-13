@@ -1,10 +1,10 @@
 extends Node2D
 
 const scn_pipe = preload("res://Scenes/pipe.tscn")
-const PIPE_WIDTH = 26 
+const PIPE_WIDTH = Pipe.PIPE_WIDTH
 
 const OFFSET_Y = 55
-const GROUND_HEIGHT = 56
+const GROUND_HEIGHT = Ground.GROUND_HEIGHT
 const OFFSET_X = 55
 
 const PREFILL = 3 
