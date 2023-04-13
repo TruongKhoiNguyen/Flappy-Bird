@@ -1,5 +1,6 @@
 extends TextureRect
 
+signal shown
 
 const MEDAL_BRONZE :Texture2D = preload("res://Sprites/medal_bronze.png")
 const MEDAL_SILVER :Texture2D = preload("res://Sprites/medal_silver.png")
@@ -23,4 +24,4 @@ func _on_score_last_counting_finished() -> void:
 	if sprite != null:
 		texture = sprite
 		show()
-	
+		shown.emit()
