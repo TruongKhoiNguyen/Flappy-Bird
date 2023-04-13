@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://deyw2ewa4i2ye"]
+[gd_scene load_steps=36 format=3 uid="uid://deyw2ewa4i2ye"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
@@ -23,9 +23,82 @@
 [ext_resource type="Texture2D" uid="uid://cce4itgoh14rr" path="res://Sprites/button_score_normal.png" id="13_aai4d"]
 [ext_resource type="Script" path="res://Scripts/HUD/btn_play.gd" id="14_3rvp8"]
 [ext_resource type="Texture2D" uid="uid://jvvbisihm4xl" path="res://Sprites/button_score_pressed.png" id="14_h57kd"]
+[ext_resource type="Texture2D" uid="uid://bhqogj204f1j6" path="res://Sprites/spark_0.png" id="14_jayr7"]
+[ext_resource type="Texture2D" uid="uid://c7on83gnmgj0i" path="res://Sprites/spark_1.png" id="15_bol8b"]
+[ext_resource type="Texture2D" uid="uid://qe20a6yi6eyj" path="res://Sprites/spark_2.png" id="16_3b02p"]
+[ext_resource type="Script" path="res://Scripts/HUD/sprite_spark.gd" id="17_wehtj"]
 
 [sub_resource type="FontVariation" id="FontVariation_co2sy"]
 base_font = ExtResource("7_dm6m1")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr1r6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_jayr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_bol8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3b02p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ji7pn"]
+resource_name = "shine"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"go_to_random_position"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_x2frc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xex7q"]
+_data = {
+"RESET": SubResource("Animation_x2frc"),
+"shine": SubResource("Animation_ji7pn")
+}
 
 [sub_resource type="Animation" id="Animation_1i2uk"]
 length = 0.001
@@ -166,7 +239,6 @@ vertical_alignment = 1
 script = ExtResource("8_yfhqu")
 
 [node name="gameover" type="Control" parent="hud"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -237,6 +309,17 @@ offset_bottom = 44.0
 texture = ExtResource("12_gxvg7")
 script = ExtResource("13_1vukg")
 
+[node name="sprite_spark" type="AnimatedSprite2D" parent="hud/gameover/tex_panelscore/medal"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wr1r6")
+speed_scale = 0.8
+script = ExtResource("17_wehtj")
+
+[node name="animation" type="AnimationPlayer" parent="hud/gameover/tex_panelscore/medal/sprite_spark"]
+libraries = {
+"": SubResource("AnimationLibrary_xex7q")
+}
+
 [node name="hbox_buttons" type="HBoxContainer" parent="hud/gameover"]
 visible = false
 layout_mode = 0
@@ -285,8 +368,9 @@ limit_bottom = 256
 [node name="spawner_ground" parent="." instance=ExtResource("3_dd6ec")]
 
 [connection signal="pressed" from="hud/btn_instructions" to="hud/btn_instructions" method="_on_pressed"]
-[connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/hbox_buttons" method="_on_score_last_counting_finished"]
 [connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/tex_panelscore/medal" method="_on_score_last_counting_finished"]
+[connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/hbox_buttons" method="_on_score_last_counting_finished"]
+[connection signal="shown" from="hud/gameover/tex_panelscore/medal" to="hud/gameover/tex_panelscore/medal/sprite_spark" method="_on_medal_shown"]
 [connection signal="pressed" from="hud/gameover/hbox_buttons/btn_play" to="hud/gameover/hbox_buttons/btn_play" method="_on_pressed"]
 [connection signal="animation_finished" from="hud/gameover/animation" to="hud/gameover/tex_panelscore/score_last" method="_on_animation_animation_finished"]
 [connection signal="state_changed" from="bird" to="hud/score" method="_on_bird_state_changed"]
