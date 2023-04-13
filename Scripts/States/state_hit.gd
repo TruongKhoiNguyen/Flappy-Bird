@@ -1,3 +1,4 @@
+class_name HitState
 extends State
 
 var bird: Bird

@@ -1,3 +1,4 @@
+class_name FlappingState
 extends State
 
 var bird
