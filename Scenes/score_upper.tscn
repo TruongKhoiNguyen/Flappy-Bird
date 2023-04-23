@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bncwutv8bs123"]
+[gd_scene load_steps=4 format=3 uid="uid://bncwutv8bs123"]
 
 [ext_resource type="Script" path="res://Scripts/score_upper.gd" id="1_g0tj7"]
+[ext_resource type="AudioStream" uid="uid://b05ni57iwsxdk" path="res://Sounds/sfx_point.wav" id="2_ka7f0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as68a"]
 size = Vector2(2, 40)
@@ -10,5 +11,8 @@ script = ExtResource("1_g0tj7")
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_as68a")
+
+[node name="sound_score" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ka7f0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
