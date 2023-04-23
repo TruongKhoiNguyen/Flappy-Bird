@@ -4,6 +4,16 @@ extends Node
 signal score_current_changed
 signal score_best_changed
 
+enum Medal {
+	BRONZE = 1,
+	SILVER = 2,
+	GOLD = 3,
+	PLATINUM = 4,
+}
+
+
+const SCREEN_WIDTH := 144
+
 
 var score_current := 0:
 	set(value):
@@ -15,7 +25,7 @@ var score_best := 0:
 	set(value):
 		if value > score_best:
 			score_best = value
-		emit_signal("score_best_changed")
+			emit_signal("score_best_changed")
 		
 
 func _ready():

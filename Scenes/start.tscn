@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://bba52oq00ew1o"]
+
+[ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_inemt"]
+[ext_resource type="Texture2D" uid="uid://cut52m6hsjwl5" path="res://Sprites/label_flappy_bird.png" id="1_u0xco"]
+[ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="2_njfux"]
+[ext_resource type="Texture2D" uid="uid://daflvhq24ydxe" path="res://Sprites/button_rate_normal.png" id="2_vf61s"]
+[ext_resource type="Texture2D" uid="uid://dqlgotjm4yj0" path="res://Sprites/button_rate_pressed.png" id="3_l6mi1"]
+[ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="3_w6yw0"]
+[ext_resource type="Script" path="res://Scripts/HUD/Buttons/hbox_buttons.gd" id="4_1as1b"]
+[ext_resource type="Texture2D" uid="uid://b1e1de5akovck" path="res://Sprites/button_play_normal.png" id="5_vg514"]
+[ext_resource type="Texture2D" uid="uid://bcfwyoog2kdnx" path="res://Sprites/button_play_pressed.png" id="6_olu4b"]
+[ext_resource type="Script" path="res://Scripts/Start/btn_start_play.gd" id="7_1ne75"]
+[ext_resource type="Texture2D" uid="uid://cce4itgoh14rr" path="res://Sprites/button_score_normal.png" id="8_osiwo"]
+[ext_resource type="Texture2D" uid="uid://jvvbisihm4xl" path="res://Sprites/button_score_pressed.png" id="9_xu7i8"]
+
+[node name="start" type="Node"]
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="tex_flappy_bird" type="TextureRect" parent="hud"]
+offset_left = 28.0
+offset_top = 65.0
+offset_right = 117.0
+offset_bottom = 89.0
+texture = ExtResource("1_u0xco")
+
+[node name="btn_rate" type="TextureButton" parent="hud"]
+offset_left = 57.0
+offset_top = 135.0
+offset_right = 88.0
+offset_bottom = 153.0
+texture_normal = ExtResource("2_vf61s")
+texture_pressed = ExtResource("3_l6mi1")
+
+[node name="hbox_buttons" type="HBoxContainer" parent="hud"]
+offset_left = 16.0
+offset_top = 160.0
+offset_right = 129.0
+offset_bottom = 189.0
+theme_override_constants/separation = 9
+alignment = 1
+script = ExtResource("4_1as1b")
+
+[node name="btn_play" type="TextureButton" parent="hud/hbox_buttons"]
+layout_mode = 2
+texture_normal = ExtResource("5_vg514")
+texture_pressed = ExtResource("6_olu4b")
+script = ExtResource("7_1ne75")
+
+[node name="btn_scores" type="TextureButton" parent="hud/hbox_buttons"]
+layout_mode = 2
+texture_normal = ExtResource("8_osiwo")
+texture_pressed = ExtResource("9_xu7i8")
+
+[node name="background" parent="." instance=ExtResource("3_w6yw0")]
+layer = -1
+
+[node name="bird" parent="." instance=ExtResource("1_inemt")]
+position = Vector2(72, 110)
+
+[node name="camera" type="Camera2D" parent="bird"]
+limit_top = 0
+limit_bottom = 256
+
+[node name="spawner_ground" parent="." instance=ExtResource("2_njfux")]
+
+[connection signal="pressed" from="hud/hbox_buttons/btn_play" to="hud/hbox_buttons/btn_play" method="_on_pressed"]

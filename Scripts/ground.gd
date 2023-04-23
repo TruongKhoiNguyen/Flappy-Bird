@@ -1,10 +1,17 @@
+class_name Ground
 extends StaticBody2D
 
-const SCREEN_WIDTH := 144
 
-@onready var camera := get_tree().get_root().get_node("main/bird/camera") 
+const GROUND_HEIGHT := 56
 
+var camera: Camera2D
 
 func _process(_delta):
-	if $bottom_right.global_position.x <= camera.global_position.x - SCREEN_WIDTH / 2:
+	if not camera:
+		return 
+		
+	if $bottom_right.global_position.x <= camera.global_position.x - Game.SCREEN_WIDTH / 2:
 		queue_free()
+
+func add_camera(p_camera: Camera2D):
+	camera = p_camera

@@ -1,3 +1,4 @@
+class_name HitState
 extends State
 
 var bird: Bird
@@ -10,7 +11,8 @@ func _init(p_bird: Bird):
 	
 	var other_body = bird.get_colliding_bodies()[0]
 	bird.add_collision_exception_with(other_body)
-	pass 
+	(bird.get_node("sound_hit") as AudioStreamPlayer).play()
+	(bird.get_node("sound_fall") as AudioStreamPlayer).play()
 	
 func integrate_forces(_state):
 	pass

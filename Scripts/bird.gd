@@ -5,16 +5,12 @@ extends RigidBody2D
 signal state_changed(bird: Bird)
 enum STATE {FLYING, FLAPPING, HIT, GROUNDED}
 
-const FlappingState = preload("res://Scripts/States/state_flapping.gd")
-const FlyingState   = preload("res://Scripts/States/state_flying.gd")
-const HitState      = preload("res://Scripts/States/state_hit.gd")
-const GroundedState = preload("res://Scripts/States/state_grounded.gd")
-
 
 @export var flap_force := 150
 @export var start_velocity := 50
 
 @onready var bird_state:State = FlyingState.new(self)
+var prev_state: STATE
 
 
 func _ready():
@@ -34,6 +30,8 @@ func _integrate_forces(state):
 func set_bird_state(state: STATE) -> void:
 	if bird_state != null:
 		bird_state.exit()
+	
+	prev_state = get_bird_state()
 	
 	match state:
 		STATE.FLYING:

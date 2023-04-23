@@ -1,16 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://deyw2ewa4i2ye"]
+[gd_scene load_steps=36 format=3 uid="uid://canhi8shw03e8"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
+[ext_resource type="Script" path="res://Scripts/HUD/Buttons/btn_instructions.gd" id="1_nqkn1"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
 [ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
 [ext_resource type="PackedScene" uid="uid://dfwn1tq4iric7" path="res://Scenes/spawner_pipe.tscn" id="4_tjjsj"]
-[ext_resource type="Script" path="res://Scripts/HUD/btn_instructions.gd" id="5_0rh5q"]
 [ext_resource type="Texture2D" uid="uid://blgq67kxbqkwl" path="res://Sprites/instructions.png" id="5_tiipy"]
 [ext_resource type="FontFile" uid="uid://cdghnl0roeap1" path="res://Fonts/font_score.ttf" id="7_dm6m1"]
 [ext_resource type="Script" path="res://Scripts/HUD/score_last.gd" id="8_orwcx"]
 [ext_resource type="Script" path="res://Scripts/HUD/score.gd" id="8_yfhqu"]
 [ext_resource type="Script" path="res://Scripts/HUD/score_best.gd" id="9_433xn"]
-[ext_resource type="Script" path="res://Scripts/HUD/hbox_buttons.gd" id="9_fbqr1"]
 [ext_resource type="Texture2D" uid="uid://sx2a11i38boy" path="res://Sprites/label_game_over.png" id="9_gf35t"]
 [ext_resource type="Script" path="res://Scripts/HUD/gameover.gd" id="9_vh1sl"]
 [ext_resource type="Texture2D" uid="uid://csr8a2alxba4k" path="res://Sprites/label_new.png" id="10_xpuio"]
@@ -18,12 +17,88 @@
 [ext_resource type="Texture2D" uid="uid://b1e1de5akovck" path="res://Sprites/button_play_normal.png" id="11_8my51"]
 [ext_resource type="Script" path="res://Scripts/HUD/label_new.gd" id="11_cr3fd"]
 [ext_resource type="Texture2D" uid="uid://bcfwyoog2kdnx" path="res://Sprites/button_play_pressed.png" id="12_45pd0"]
+[ext_resource type="Texture2D" uid="uid://bcpshtk3rn40m" path="res://Sprites/medal_gold.png" id="12_gxvg7"]
 [ext_resource type="Texture2D" uid="uid://cce4itgoh14rr" path="res://Sprites/button_score_normal.png" id="13_aai4d"]
-[ext_resource type="Script" path="res://Scripts/HUD/btn_play.gd" id="14_3rvp8"]
+[ext_resource type="Script" path="res://Scripts/HUD/Medal/medal.gd" id="13_wyf1m"]
 [ext_resource type="Texture2D" uid="uid://jvvbisihm4xl" path="res://Sprites/button_score_pressed.png" id="14_h57kd"]
+[ext_resource type="Texture2D" uid="uid://bhqogj204f1j6" path="res://Sprites/spark_0.png" id="14_jayr7"]
+[ext_resource type="Texture2D" uid="uid://c7on83gnmgj0i" path="res://Sprites/spark_1.png" id="15_bol8b"]
+[ext_resource type="Texture2D" uid="uid://qe20a6yi6eyj" path="res://Sprites/spark_2.png" id="16_3b02p"]
+[ext_resource type="Script" path="res://Scripts/HUD/Medal/sprite_spark.gd" id="17_nmqmx"]
+[ext_resource type="Script" path="res://Scripts/HUD/Buttons/hbox_buttons.gd" id="18_aq773"]
+[ext_resource type="Script" path="res://Scripts/HUD/Buttons/btn_play.gd" id="21_3be2p"]
 
 [sub_resource type="FontVariation" id="FontVariation_co2sy"]
 base_font = ExtResource("7_dm6m1")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr1r6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_jayr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_bol8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3b02p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_x2frc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ji7pn"]
+resource_name = "shine"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"go_to_random_position"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xex7q"]
+_data = {
+"RESET": SubResource("Animation_x2frc"),
+"shine": SubResource("Animation_ji7pn")
+}
 
 [sub_resource type="Animation" id="Animation_1i2uk"]
 length = 0.001
@@ -141,7 +216,7 @@ _data = {
 offset_right = 144.0
 offset_bottom = 256.0
 action_mode = 0
-script = ExtResource("5_0rh5q")
+script = ExtResource("1_nqkn1")
 
 [node name="texture" type="TextureRect" parent="hud/btn_instructions"]
 layout_mode = 0
@@ -224,6 +299,27 @@ offset_bottom = 36.0
 texture = ExtResource("10_xpuio")
 script = ExtResource("11_cr3fd")
 
+[node name="medal" type="TextureRect" parent="hud/gameover/tex_panelscore"]
+visible = false
+layout_mode = 0
+offset_left = 13.0
+offset_top = 22.0
+offset_right = 35.0
+offset_bottom = 44.0
+texture = ExtResource("12_gxvg7")
+script = ExtResource("13_wyf1m")
+
+[node name="sprite_spark" type="AnimatedSprite2D" parent="hud/gameover/tex_panelscore/medal"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_wr1r6")
+speed_scale = 0.8
+script = ExtResource("17_nmqmx")
+
+[node name="animation" type="AnimationPlayer" parent="hud/gameover/tex_panelscore/medal/sprite_spark"]
+libraries = {
+"": SubResource("AnimationLibrary_xex7q")
+}
+
 [node name="hbox_buttons" type="HBoxContainer" parent="hud/gameover"]
 visible = false
 layout_mode = 0
@@ -233,13 +329,13 @@ offset_right = 129.0
 offset_bottom = 189.0
 theme_override_constants/separation = 9
 alignment = 1
-script = ExtResource("9_fbqr1")
+script = ExtResource("18_aq773")
 
 [node name="btn_play" type="TextureButton" parent="hud/gameover/hbox_buttons"]
 layout_mode = 2
 texture_normal = ExtResource("11_8my51")
 texture_pressed = ExtResource("12_45pd0")
-script = ExtResource("14_3rvp8")
+script = ExtResource("21_3be2p")
 
 [node name="btn_scores" type="TextureButton" parent="hud/gameover/hbox_buttons"]
 layout_mode = 2
@@ -272,7 +368,9 @@ limit_bottom = 256
 [node name="spawner_ground" parent="." instance=ExtResource("3_dd6ec")]
 
 [connection signal="pressed" from="hud/btn_instructions" to="hud/btn_instructions" method="_on_pressed"]
+[connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/tex_panelscore/medal" method="_on_score_last_counting_finished"]
 [connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/hbox_buttons" method="_on_score_last_counting_finished"]
+[connection signal="shown" from="hud/gameover/tex_panelscore/medal" to="hud/gameover/tex_panelscore/medal/sprite_spark" method="_on_medal_shown"]
 [connection signal="pressed" from="hud/gameover/hbox_buttons/btn_play" to="hud/gameover/hbox_buttons/btn_play" method="_on_pressed"]
 [connection signal="animation_finished" from="hud/gameover/animation" to="hud/gameover/tex_panelscore/score_last" method="_on_animation_animation_finished"]
 [connection signal="state_changed" from="bird" to="hud/score" method="_on_bird_state_changed"]

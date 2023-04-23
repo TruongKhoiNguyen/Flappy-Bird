@@ -1,3 +1,4 @@
+class_name FlyingState
 extends State
 
 var bird: Bird
