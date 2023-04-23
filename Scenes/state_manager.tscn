@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b845ms3ah8cta"]
+[gd_scene load_steps=8 format=3 uid="uid://b845ms3ah8cta"]
 
 [ext_resource type="Script" path="res://Scripts/state_manager.gd" id="1_njpjq"]
 [ext_resource type="Texture2D" uid="uid://blpbt7bxyoxnj" path="res://Sprites/rect_black.png" id="1_qxhlr"]
+[ext_resource type="AudioStream" uid="uid://duhaxsfwbfphi" path="res://Sounds/sfx_swooshing.wav" id="3_ki1yi"]
 
 [sub_resource type="Animation" id="Animation_ulb5y"]
 length = 0.001
@@ -72,3 +73,6 @@ speed_scale = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_xm4tq")
 }
+
+[node name="sound_change_stage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ki1yi")

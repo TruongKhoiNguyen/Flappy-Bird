@@ -13,6 +13,7 @@ func change_stage(stage_path: String) -> void:
 	is_stage_changing = true
 	
 	$tex_black/animation.play("fade_in")
+	$sound_change_stage.play()
 	await $tex_black/animation.animation_finished
 	
 	get_tree().change_scene_to_file(stage_path)

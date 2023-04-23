@@ -12,6 +12,7 @@ func integrate_forces(state):
 		state.linear_velocity = Vector2(bird.linear_velocity.x, -bird.flap_force)
 		state.angular_velocity = -3
 		bird.get_node('sprite/animation_player').play('Flap')
+		bird.get_node("sound_flap").play()
 		
 	# Limit rotation of the bird
 	if bird.rotation_degrees < -30 or bird.rotation_degrees > 90:

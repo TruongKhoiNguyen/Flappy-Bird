@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://coi5kyixx8x12"]
+[gd_scene load_steps=15 format=3 uid="uid://coi5kyixx8x12"]
 
 [ext_resource type="Script" path="res://Scripts/bird.gd" id="1_blk1x"]
 [ext_resource type="Texture2D" uid="uid://c6ftdxend5qv" path="res://Sprites/bird_orange_0.png" id="1_jf2d7"]
 [ext_resource type="Texture2D" uid="uid://dmxx30jy2nlkp" path="res://Sprites/bird_orange_1.png" id="2_80jh4"]
 [ext_resource type="Texture2D" uid="uid://db62invegwn13" path="res://Sprites/bird_orange_2.png" id="3_6dtfd"]
+[ext_resource type="AudioStream" uid="uid://boj1m2v3n5qe1" path="res://Sounds/sfx_wing.wav" id="5_g24ag"]
+[ext_resource type="AudioStream" uid="uid://cvvw102llcw33" path="res://Sounds/sfx_hit.wav" id="6_bgvge"]
+[ext_resource type="AudioStream" uid="uid://llvha634pkb8" path="res://Sounds/sfx_die.wav" id="7_au157"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ausqs"]
 animations = [{
@@ -149,3 +152,12 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c0egq")
+
+[node name="sound_flap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_g24ag")
+
+[node name="sound_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bgvge")
+
+[node name="sound_fall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_au157")
