@@ -1,5 +1,6 @@
 extends TextureButton
 
 
+
 func _on_pressed():
-	get_tree().paused = true
+	get_tree().paused = false
