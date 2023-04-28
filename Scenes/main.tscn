@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://canhi8shw03e8"]
+[gd_scene load_steps=44 format=3 uid="uid://canhi8shw03e8"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="Script" path="res://Scripts/HUD/Buttons/btn_instructions.gd" id="1_nqkn1"]
@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://blpbt7bxyoxnj" path="res://Sprites/rect_black.png" id="30_w0g7t"]
 [ext_resource type="Texture2D" uid="uid://b1pcbb6t0eyvq" path="res://Sprites/button_resume.png" id="31_5ehmx"]
 [ext_resource type="Script" path="res://Scripts/HUD/Buttons/btn_resume.gd" id="33_05126"]
+[ext_resource type="Texture2D" uid="uid://cnreew8i1dshv" path="res://Sprites/button_menu.png" id="34_203qu"]
+[ext_resource type="Script" path="res://Scripts/HUD/Buttons/btn_menu.gd" id="35_v5du6"]
 
 [sub_resource type="FontVariation" id="FontVariation_co2sy"]
 base_font = ExtResource("7_dm6m1")
@@ -406,9 +408,19 @@ offset_bottom = 24.0
 texture_normal = ExtResource("31_5ehmx")
 script = ExtResource("33_05126")
 
+[node name="btn_menu" type="TextureButton" parent="hud/ctrl_pause"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 121.0
+offset_right = 92.0
+offset_bottom = 135.0
+texture_normal = ExtResource("34_203qu")
+script = ExtResource("35_v5du6")
+
+[connection signal="state_changed" from="bird" to="spawner_pipe" method="_on_bird_state_changed" flags=6]
 [connection signal="state_changed" from="bird" to="hud/score" method="_on_bird_state_changed"]
 [connection signal="state_changed" from="bird" to="hud/gameover" method="_on_bird_state_changed"]
-[connection signal="state_changed" from="bird" to="spawner_pipe" method="_on_bird_state_changed" flags=6]
+[connection signal="state_changed" from="bird" to="hud/btn_pause" method="_on_bird_state_changed"]
 [connection signal="pressed" from="hud/btn_instructions" to="hud/btn_instructions" method="_on_pressed"]
 [connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/tex_panelscore/medal" method="_on_score_last_counting_finished"]
 [connection signal="counting_finished" from="hud/gameover/tex_panelscore/score_last" to="hud/gameover/hbox_buttons" method="_on_score_last_counting_finished"]
@@ -419,3 +431,4 @@ script = ExtResource("33_05126")
 [connection signal="pressed" from="hud/btn_pause" to="hud/ctrl_pause" method="_on_btn_pause_pressed"]
 [connection signal="pressed" from="hud/ctrl_pause/btn_resume" to="hud/ctrl_pause" method="_on_btn_resume_pressed"]
 [connection signal="pressed" from="hud/ctrl_pause/btn_resume" to="hud/ctrl_pause/btn_resume" method="_on_pressed"]
+[connection signal="pressed" from="hud/ctrl_pause/btn_menu" to="hud/ctrl_pause/btn_menu" method="_on_pressed"]

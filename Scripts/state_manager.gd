@@ -3,6 +3,7 @@ extends CanvasLayer
 signal stage_changed
 
 const STAGE_MAIN := "res://Scenes/main.tscn"
+const STAGE_MENU := "res://Scenes/start.tscn"
 
 var is_stage_changing := false
 
