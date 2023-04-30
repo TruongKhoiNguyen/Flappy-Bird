@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://canhi8shw03e8"]
+[gd_scene load_steps=45 format=3 uid="uid://canhi8shw03e8"]
 
 [ext_resource type="PackedScene" uid="uid://coi5kyixx8x12" path="res://Scenes/bird.tscn" id="1_aw3c8"]
 [ext_resource type="Script" path="res://Scripts/HUD/Buttons/btn_instructions.gd" id="1_nqkn1"]
 [ext_resource type="PackedScene" uid="uid://dj06ohkfankut" path="res://Scenes/background.tscn" id="2_vped0"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="3_cwmor"]
 [ext_resource type="PackedScene" uid="uid://c64fe0yc4g5wy" path="res://Scenes/spawner_ground.tscn" id="3_dd6ec"]
 [ext_resource type="PackedScene" uid="uid://dfwn1tq4iric7" path="res://Scenes/spawner_pipe.tscn" id="4_tjjsj"]
 [ext_resource type="Texture2D" uid="uid://blgq67kxbqkwl" path="res://Sprites/instructions.png" id="5_tiipy"]
@@ -232,6 +233,7 @@ linear_damp_mode = 1
 offset = Vector2(36, 0)
 limit_top = 0
 limit_bottom = 256
+script = ExtResource("3_cwmor")
 
 [node name="spawner_pipe" parent="." instance=ExtResource("4_tjjsj")]
 
@@ -417,6 +419,7 @@ offset_bottom = 135.0
 texture_normal = ExtResource("34_203qu")
 script = ExtResource("35_v5du6")
 
+[connection signal="state_changed" from="bird" to="bird/camera" method="_on_bird_state_changed"]
 [connection signal="state_changed" from="bird" to="spawner_pipe" method="_on_bird_state_changed" flags=6]
 [connection signal="state_changed" from="bird" to="hud/score" method="_on_bird_state_changed"]
 [connection signal="state_changed" from="bird" to="hud/gameover" method="_on_bird_state_changed"]
