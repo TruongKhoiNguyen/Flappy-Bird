@@ -14,5 +14,8 @@ func _on_score_current_changed():
 
 
 func _on_bird_state_changed(bird: Bird):
-	if bird.get_bird_state() == bird.STATE.GROUNDED:
+	if (
+			bird.get_bird_state() == bird.STATE.GROUNDED
+			or bird.get_bird_state() == bird.STATE.HIT
+	):
 		hide()
