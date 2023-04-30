@@ -20,6 +20,7 @@ func shake():
 		
 		await get_tree().process_frame
 		
+	time = 0
 	offset = initial_offset
 
 
@@ -29,3 +30,5 @@ func _on_bird_state_changed(bird: Bird):
 			or bird.get_bird_state() == bird.STATE.HIT
 	):
 		shake()
+		bird.state_changed.disconnect(_on_bird_state_changed)
+	
