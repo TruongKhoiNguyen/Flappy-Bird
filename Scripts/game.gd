@@ -30,8 +30,6 @@ var score_best := 0:
 
 func _ready():
 	StateManager.stage_changed.connect(_on_stage_changed)
-	pass
 
 func _on_stage_changed():
 	score_current = 0
-	pass
