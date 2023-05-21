@@ -48,9 +48,9 @@ func set_bird_state(state: STATE) -> void:
 func get_bird_state() -> STATE:
 	if bird_state is FlyingState:
 		return STATE.FLYING
-	elif  bird_state is FlappingState:
+	if bird_state is FlappingState:
 		return STATE.FLAPPING
-	elif bird_state is HitState:
+	if bird_state is HitState:
 		return STATE.HIT
 		
 	return STATE.GROUNDED

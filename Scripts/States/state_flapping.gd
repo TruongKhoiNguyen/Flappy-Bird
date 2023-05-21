@@ -2,17 +2,24 @@ class_name FlappingState
 extends State
 
 var bird
+
+var animation_player: AnimationPlayer
+var sound_flap: AudioStreamPlayer
 	
 func _init(p_bird):
 	bird = p_bird
 	bird.linear_velocity = Vector2(bird.start_velocity, bird.linear_velocity.y)
+	animation_player = bird.get_node('sprite/animation_player')
+	sound_flap = bird.get_node("sound_flap")
 		
 func integrate_forces(state):
 	if Input.is_action_pressed("Flap"):
-		state.linear_velocity = Vector2(bird.linear_velocity.x, -bird.flap_force)
 		state.angular_velocity = -3
-		bird.get_node('sprite/animation_player').play('Flap')
-		bird.get_node("sound_flap").play()
+		
+	if Input.is_action_just_pressed("Flap"):
+		state.linear_velocity = Vector2(bird.linear_velocity.x, -bird.flap_force)
+		animation_player.play('Flap')
+		sound_flap.play()
 		
 	# Limit rotation of the bird
 	if bird.rotation_degrees < -30 or bird.rotation_degrees > 90:

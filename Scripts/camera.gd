@@ -20,7 +20,7 @@ func shake():
 		
 		await get_tree().process_frame
 		
-	time = 0
+	time = 0.0
 	offset = initial_offset
 
 
